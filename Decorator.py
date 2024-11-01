@@ -1,11 +1,12 @@
 __memoizacao = {}
 def Memoizacao(function):
-    __memoizacao[function] = {}
+    aux = {}
+    __memoizacao[function] = aux
     def func(*args, **kwargs):
         _ = (args, tuple(kwargs.items()))
         try:
-            return __memoizacao[function][_]
+            return aux[_]
         except:
-            __memoizacao[function][_] = function(*args, **kwargs)
-        return __memoizacao[function][_]
+            aux[_] = function(*args, **kwargs)
+        return aux[_]
     return func
